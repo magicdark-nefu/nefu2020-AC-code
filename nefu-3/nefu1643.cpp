@@ -1,32 +1,37 @@
 #include <bits/stdc++.h>
+
 using namespace std;
-int gcd(int x,int y)
-{
-    if(y==0)return x;
-    else
-    return gcd(y,x%y);
-}
+
 int main()
 {
+    int gys(int a,int b);
+    double A,B,L;
+    cin >> A >> B >> L ;
     double a,b;
-    int l,a1,b1;
-    double zuida=9999999;
-    while(cin>>a>>b>>l)
+    int A_final,B_final,i;
+    double x;
+    x=A/B;
+    double t=1000;
+    for(a=1;a<=L;a++)
     {
-       zuida=999999;
-       for(double i=1;i<=l;i++)
-       for(double j=1;j<=l;j++)
-       {
-           if(i/j>=a/b&&zuida>i/j-a/b)
-           {
-               zuida=i/j-a/b;
-               a1=i;
-               b1=j;
-           }
-       }
-       a1=a1/gcd(a1,b1);
-       b1=b1/gcd(a1,b1);
-       cout<<a1<<" "<<b1<<endl;
+        for(b=1;b<=L;b++)
+        {
+            double y=double(a/b);
+            if(y>=x&&y-x<t)
+            {
+                A_final=a;
+                B_final=b;
+                t=y-x;
+            }
+        }
     }
+    i=gys(A_final,B_final);
+    A_final/=i;B_final/=i;
+    cout << A_final << " " << B_final << endl ;
+    return 0;
+}
 
-
+int gys(int a,int b)//求最大公约数
+{
+    return b?gys(b,a%b):a;
+}
